@@ -114,7 +114,7 @@ def tuling_reply(msg):
     elif "6" in msgText:
         pullMembersMore(msg, u'NYU纽约二手', CurUserName)
         sleep(0.5)
-    elif "y" in msgText:
+    elif "7" in msgText:
         pullMembersMore(msg, u'北美CPA', CurUserName)
         sleep(0.5)
     else:
