@@ -13,14 +13,14 @@ usersDict = {}
 itchat.auto_login(enableCmdQR=2,hotReload=True)
 itchat.get_chatrooms(update=True)
 
-v0= u"您好,SFSU加群建群小助手为您服务:)\n"
-v1= u"回复 1 加NYU纽约拼车群;\n"
+v0= u"您好,NYU纽约加群建群小助手为您服务:)\n"
+v1= u"回复 1 加NYU纽约拼车群\n"
 v2= u"回复 2 加CS刷题、竞赛、面试;\n"
-v3= u"回复 3 加NYU纽约桌游群\n"
-v4= u"回复 4 加NYU纽约租房群;\n"
-v5= u"回复 5 加NYU纽约校友群;\n"
-v6= u"回复 6 加NYU纽约美食约饭群;\n"
-v7= u"回复 7 加NYU纽约二手货群;\n"
+v3= u"回复 3 加NYU纽约租房群;\n"
+v4= u"回复 4 加NYU纽约校友群;\n"
+v5= u"回复 5 加NYU纽约美食约饭群;\n"
+v6= u"回复 6 加NYU纽约二手货群;\n"
+v7= u"回复 7 加北美CPA,REG天天刷题群;\n"
 vT =v0+v1+v2+v3+v4+v5+v6+v7
 #Chaoran userid:@ef633e828340000b5518a18f66daefbf8f307a1fa96d405288a885014d8c25d5
 #汪灵欣 userid:@eb21513f32b62cd9773abc2fd5531ee05ca09af4ca926fbf896d8c89f29e46cc
@@ -103,19 +103,19 @@ def tuling_reply(msg):
         pullMembersMore(msg, u'天天刷题', CurUserName)
         sleep(0.5)
     elif "3" in msgText:
-        pullMembersMore(msg, u'NYU纽约桌游', CurUserName)
-        sleep(0.5)
-    elif "4" in msgText:
         pullMembersMore(msg, u'NYU纽约租房', CurUserName)
         sleep(0.5)
-    elif "5" in msgText:
+    elif "4" in msgText:
         pullMembersMore(msg, u'NYU纽约校友', CurUserName)
         sleep(0.5)
-    elif "6" in msgText:
+    elif "5" in msgText:
         pullMembersMore(msg, u'NYU纽约美食', CurUserName)
         sleep(0.5)
-    elif "7" in msgText:
+    elif "6" in msgText:
         pullMembersMore(msg, u'NYU纽约二手', CurUserName)
+        sleep(0.5)
+    elif "y" in msgText:
+        pullMembersMore(msg, u'北美CPA', CurUserName)
         sleep(0.5)
     else:
         itchat.send_msg(vT, CurUserName)
