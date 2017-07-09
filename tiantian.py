@@ -120,7 +120,7 @@ def tuling_reply(msg):
         sleep(0.5)
     elif "8" in msgText:
         pullMembersMore(msg, u'北美妈妈', CurUserName)
-        sleep(0.5)k
+        sleep(0.5)
     else:
         itchat.send_msg(vT, CurUserName)
         sleep(0.5)
