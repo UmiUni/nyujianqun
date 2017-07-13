@@ -16,13 +16,15 @@ itchat.get_chatrooms(update=True)
 v0= u"您好,NYU纽约加群建群小助手为您服务:)\n"
 v1= u"回复 1 加纽约拼车群\n"
 v2= u"回复 2 加北美CS刷题竞赛面试总群;\n"
-v3= u"回复 3 加纽约租房群;\n"
+v3= u"回复 3 加纽约租房群;北美信用卡爱好者总群\n"
 v4= u"回复 4 加NYU纽约校友群;\n"
 v5= u"回复 5 加纽约美食约饭群;\n"
 v6= u"回复 6 加纽约二手货群;\n"
 v7= u"回复 7 加北美CPA,REG天天刷题群;\n"
 v8= u"回复 8 加北美妈妈母婴总群;\n"
-vT =v0+v1+v2+v3+v4+v5+v6+v7+v8
+v9= u"回复 9 加圣约翰租房叫车玩乐全攻略群;\n"
+v10= u"回复 10 加线上KTV开嗓🎙️北美总群;\n"
+vT =v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10
 #Chaoran userid:@ef633e828340000b5518a18f66daefbf8f307a1fa96d405288a885014d8c25d5
 #汪灵欣 userid:@eb21513f32b62cd9773abc2fd5531ee05ca09af4ca926fbf896d8c89f29e46cc
 #groups= {'@@6cdcfcb7dc00e7d546464ba702151143e1bf4aa9f72aa6e2559b86469e9a2481':'天天VIP','@@0515f86f31ec80ce4d4238a9ada8fdc0dd0900cc017f87c17df8ee49fb6d4663':'雷孙王'}
@@ -97,7 +99,7 @@ def tuling_reply(msg):
     else:
         usersDict[CurUserName] = 1
     msgText = msg['Text']
-    if "1" in msgText:
+    if "1" in msgText and ("10" not in msgText):
         pullMembersMore(msg, u'纽约拼车', CurUserName)
         sleep(0.5)
     elif "2" in msgText:
@@ -105,6 +107,8 @@ def tuling_reply(msg):
         sleep(0.5)
     elif "3" in msgText:
         pullMembersMore(msg, u'纽约租房', CurUserName)
+        sleep(0.5)
+        pullMembersMore(msg, u'北美信用', CurUserName)
         sleep(0.5)
     elif "4" in msgText:
         pullMembersMore(msg, u'NYU纽约校友', CurUserName)
@@ -120,6 +124,12 @@ def tuling_reply(msg):
         sleep(0.5)
     elif "8" in msgText:
         pullMembersMore(msg, u'北美妈妈', CurUserName)
+        sleep(0.5)
+    elif "9" in msgText:
+        pullMembersMore(msg, u'圣约翰租房', CurUserName)
+        sleep(0.5)
+    elif "10" in msgText:
+        pullMembersMore(msg, u'线上KTV', CurUserName)
         sleep(0.5)
     else:
         itchat.send_msg(vT, CurUserName)
