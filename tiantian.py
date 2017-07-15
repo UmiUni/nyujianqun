@@ -131,9 +131,9 @@ def tuling_reply(msg):
     elif "10" in msgText:
         pullMembersMore(msg, u'线上KTV', CurUserName)
         sleep(0.5)
-    else:
-        itchat.send_msg(vT, CurUserName)
-        sleep(0.5)
+    sleep(0.5)
+    itchat.send_msg(vT, CurUserName)
+    sleep(0.5)
 
 def pullMembersMore(msg, chatroomName, CurUserName):
     cur_chatrooms = itchat.search_chatrooms(name=chatroomName)
