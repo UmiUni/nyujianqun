@@ -15,7 +15,6 @@ usersDict = {}
 itchat.auto_login(enableCmdQR=2,hotReload=True)
 itchat.get_chatrooms(update=True)
 
-
 chatGroups =[
 u'纽约拼车',
 u'天天刷题',
@@ -46,31 +45,20 @@ vT =v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11
 
 @itchat.msg_register(itchat.content.TEXT)
 def tuling_reply(msg):
-  CurUserName = msg['FromUserName']
+  preventAbuseAdding(msg)
 
-    #prevent abusing talking and adding
-    if(CurUserName in usersDict):
-        usersDict[CurUserName] = usersDict[CurUserName] + 1
-        if(usersDict[CurUserName] >= 16):
-          return
-        if(usersDict[CurUserName] >= 15):
-          itchat.send_msg(u'您已达到今日加群上限，请明日再来～😊', CurUserName)
-          return
-    else:
-        usersDict[CurUserName] = 1
-
-
-    #send group invite msg according to digits
-    msgText = msg['Text']
-    x = re.findall(r'\d+', msgText)
-    print x
-    if(len(x) >0):
-      y= int(x[0])
-      if(y>=0 and y<=10):
-        pullMembersMore(msg, chatGroups[y*2], CurUserName)
-        sleep(0.5)
-    itchat.send_msg(vT, CurUserName)
-    sleep(0.5)
-    msgText = msg['Text']
+  #send group invite msg according to digits
+  msgText = msg['Text']
+  x = re.findall(r'\d+', msgText)
+  print x
+  if(len(x) >0):
+    y= int(x[0])
+    if(y>=0 and y<=10):
+      pullMembersMore(msg, chatGroups[y*2], CurUserName)
+      sleep(0.5)
+  itchat.send_msg(vT, CurUserName)
+  sleep(0.5)
+  msgText = msg['Text']
 
 itchat.run() 
+

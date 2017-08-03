@@ -83,3 +83,16 @@ def getChatroomMemberList(roomId):
     itchat.get_chatrooms(update=True)
     detailedChatroom = itchat.update_chatroom(roomId, detailedMember=True)
     return detailedChatroom['MemberList']
+
+def preventAbuseAdding(msg):
+  CurUserName = msg['FromUserName']
+  #prevent abusing talking and adding
+  if(CurUserName in usersDict):
+    usersDict[CurUserName] = usersDict[CurUserName] + 1
+    if(usersDict[CurUserName] >= 16):
+      return
+    if(usersDict[CurUserName] >= 15):
+      itchat.send_msg(u'您已达到今日加群上限，请明日再来～😊', CurUserName)
+      return
+    else:
+      usersDict[CurUserName] = 1
