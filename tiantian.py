@@ -6,60 +6,50 @@ import sys
 import json
 import time
 from time import sleep
-
+import settings
+from xiaozhushou_util import *
+import re
 reload(sys)  
 sys.setdefaultencoding('utf8')
-freq = {}
-usersDict = {}
+
 itchat.auto_login(enableCmdQR=2,hotReload=True)
 itchat.get_chatrooms(update=True)
+settings.init()
 
-chatGroups =[
-u'纽约拼车',
-u'天天刷题',
-u'纽约租房',
-u'NYU纽约校友',
-u'纽约美食',
-u'纽约二手',
-u'北美CPA',
-u'北美妈妈',
-u'圣约翰租房',
-u'北美信用',
-u'线上KTV'
-]
-
-v0= u"您好,NYU纽约加群建群小助手为您服务:)\n"
-v1= u"回复 0 加纽约拼车群;\n"
-v2= u"回复 1 加北美CS刷题竞赛面试总群;\n"
-v3= u"回复 2 加纽约租房群;\n"
-v4= u"回复 3 加NYU纽约校友群;\n"
-v5= u"回复 4 加纽约美食约饭群;\n"
-v6= u"回复 5 加纽约二手货群;\n"
-v7= u"回复 6 加北美CPA,REG天天刷题群;\n"
-v8= u"回复 7 加北美妈妈母婴总群;\n"
-v9= u"回复 8 加圣约翰租房叫车玩乐全攻略群;\n"
-v10= u"回复 9 北美信用卡爱好者总群;\n"
-v11= u"回复 10 加线上KTV开嗓🎙️北美总群;\n"
-vT =v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11
-
-from xiaozhushou_util import * 
+@itchat.msg_register('Friends')
+def add_friend(msg):
+    itchat.add_friend(**msg['Text'])
+    itchat.send_msg(msg['RecommendInfo']['UserName'])
 
 @itchat.msg_register(itchat.content.TEXT)
 def tuling_reply(msg):
-  preventAbuseAdding(msg)
+  CurUserName = msg['FromUserName']
+  preventAbuseTalking(CurUserName)
+  sendGroupInviteMsg(msg,CurUserName)
 
-  #send group invite msg according to digits
+#send group invite msg according to digits
+def sendGroupInviteMsg(msg,CurUserName):
   msgText = msg['Text']
   x = re.findall(r'\d+', msgText)
   print x
   if(len(x) >0):
     y= int(x[0])
     if(y>=0 and y<=10):
-      pullMembersMore(msg, chatGroups[y*2], CurUserName)
+      print settings.chatGroups[y]
+      pullMembersMore(msg, settings.chatGroups[y], CurUserName)
       sleep(0.5)
-  itchat.send_msg(vT, CurUserName)
+  itchat.send_msg(settings.vT, CurUserName)
   sleep(0.5)
   msgText = msg['Text']
+
+#if group chat msg contains kick ads, start kicking logic
+@itchat.msg_register(TEXT, isGroupChat=True)
+def text_reply(msg):
+    if u'超然' in msg['ActualNickName']:
+      content = msg['Content']
+      if(content[0]=="@"):
+        if u'广告' in content:
+          delUser(msg['FromUserName'],content)
 
 itchat.run() 
 

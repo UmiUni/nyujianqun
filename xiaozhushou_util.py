@@ -1,24 +1,13 @@
 # -*- coding: UTF-8 -*-
-import requests
+import settings
 import itchat
-from itchat.content import *
-import sys
-import json
-import time
-import xiaozhushou_util
-from time import sleep
-reload(sys)
-sys.setdefaultencoding('utf8')
-
-@itchat.msg_register('Friends')
-def add_friend(msg):
-    itchat.add_friend(**msg['Text'])
-    itchat.send_msg(vT, msg['RecommendInfo']['UserName'])
 
 #get chatroom id from chatroom name
 def getName(chatroomName):
-    itchat.get_chatrooms(update=True)
     cur_chatrooms = itchat.search_chatrooms(name=chatroomName)
+    #print 'cur_chatrooms'+cur_chatrooms
+    if(len(cur_chatrooms)==0):
+      return
     detailedChatroom = itchat.update_chatroom(cur_chatrooms[0]['UserName'], detailedMember=True)
     #print(json.dumps(cur_chatrooms)+"\n")
     return detailedChatroom["UserName"]
@@ -47,25 +36,22 @@ def get_response(msg):
 #invite a user to a chatroom according to his current msg
 def pullMembersMore(msg, chatroomName, CurUserName):
     cur_chatrooms = itchat.search_chatrooms(name=chatroomName)
-    chatRoomUserName = cur_chatrooms[1]['UserName']
+    #print json.dumps(cur_chatrooms)
+    if(len(cur_chatrooms) == 0):
+      return
+    chatRoomUserName = cur_chatrooms[0]['UserName']
     r = itchat.add_member_into_chatroom(chatRoomUserName,[{'UserName':CurUserName}],useInvitation=True)
-
-#if group chat msg contains kick ads, start kicking logic
-@itchat.msg_register(TEXT, isGroupChat=True)
-def text_reply(msg):
-    if u'超然' in msg['ActualNickName']:
-      content = msg['Content']
-      if(content[0]=="@"):
-        if u'广告' in content:
-          delUser(msg['FromUserName'],content)
 
 #don't use, may hurt account, don't try to kick from every group, a lot of request will be send to tencent
 def delFromAllGroup(content):
-  for i in range(len(chatGroups)):
-    delUser(getName(chatGroups[i]),content)
+  for i in range(len(settings.chatGroups)):
+    chatroomId = getName(settings.chatGroups[i])
+    delUser(chatroomId,content)
 
 #del a using according to content and roomId
 def delUser(roomId, content):
+  if(roomId is None):
+    return 
   ret = itchat.delete_member_from_chatroom(roomId,[{'UserName':searchUser(getChatroomMemberList(roomId),content)}])
   if(ret):
     itchat.send('谢谢群主，为保持群内清洁,已清除广告号~😊',toUserName=roomId)
@@ -84,10 +70,8 @@ def getChatroomMemberList(roomId):
     detailedChatroom = itchat.update_chatroom(roomId, detailedMember=True)
     return detailedChatroom['MemberList']
 
-def preventAbuseAdding(msg):
-  CurUserName = msg['FromUserName']
-  #prevent abusing talking and adding
-  if(CurUserName in usersDict):
+def preventAbuseTalking(CurUserName):
+  if(CurUserName in settings.usersDict):
     usersDict[CurUserName] = usersDict[CurUserName] + 1
     if(usersDict[CurUserName] >= 16):
       return
