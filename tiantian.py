@@ -6,7 +6,6 @@ import sys
 import json
 import time
 from time import sleep
-from xiaozhushou_util import * 
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -42,6 +41,8 @@ v9= u"回复 8 加圣约翰租房叫车玩乐全攻略群;\n"
 v10= u"回复 9 北美信用卡爱好者总群;\n"
 v11= u"回复 10 加线上KTV开嗓🎙️北美总群;\n"
 vT =v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11
+
+from xiaozhushou_util import * 
 
 @itchat.msg_register(itchat.content.TEXT)
 def tuling_reply(msg):
