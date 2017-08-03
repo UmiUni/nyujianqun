@@ -46,7 +46,7 @@ vT =v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11
 
 @itchat.msg_register(itchat.content.TEXT)
 def tuling_reply(msg):
-CurUserName = msg['FromUserName']
+  CurUserName = msg['FromUserName']
 
     #prevent abusing talking and adding
     if(CurUserName in usersDict):
