@@ -19,7 +19,7 @@ settings.init()
 @itchat.msg_register('Friends')
 def add_friend(msg):
     itchat.add_friend(**msg['Text'])
-    itchat.send_msg(msg['RecommendInfo']['UserName'])
+    itchat.send_msg(vT, msg['RecommendInfo']['UserName'])
 
 @itchat.msg_register(itchat.content.TEXT)
 def tuling_reply(msg):
@@ -31,11 +31,11 @@ def tuling_reply(msg):
 def sendGroupInviteMsg(msg,CurUserName):
   msgText = msg['Text']
   x = re.findall(r'\d+', msgText)
-  print x
+  #print x
   if(len(x) >0):
     y= int(x[0])
     if(y>=0 and y<=10):
-      print settings.chatGroups[y]
+      #print settings.chatGroups[y]
       pullMembersMore(msg, settings.chatGroups[y], CurUserName)
       sleep(0.5)
   itchat.send_msg(settings.vT, CurUserName)
