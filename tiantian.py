@@ -24,6 +24,9 @@ def add_friend(msg):
 @itchat.msg_register(itchat.content.TEXT)
 def tuling_reply(msg):
   CurUserName = msg['FromUserName']
+  if(u'管理猿加密码' in msg['Content']):
+    settings.admins.append(CurUserName)  
+    itchat.send_msg(u'您已是管理猿',CurUserName)
   if(preventAbuseTalking(CurUserName)):
     return
   sendGroupInviteMsg(msg,CurUserName)
@@ -46,7 +49,7 @@ def sendGroupInviteMsg(msg,CurUserName):
 #if group chat msg contains kick ads, start kicking logic
 @itchat.msg_register(TEXT, isGroupChat=True)
 def text_reply(msg):
-  if u'@774514af2f79102d03828205cc9b3c77926b8643fa75749be3a5082cf6149917' in msg['ActualUserName']:
+  if msg['ActualUserName'] in settings.admins:
     content = msg['Content']
     if(content[0]=="@"):
       if u'广告' in content:
