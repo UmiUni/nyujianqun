@@ -40,4 +40,4 @@ def init():
   
   usersDict = {}
   admins = []
-  global ADMIN = u'NY纽约加群小助手'
+  ADMIN = u'NY纽约加群小助手'
