@@ -27,8 +27,6 @@ def tuling_reply(msg):
   if(u'管理猿加密码' in msg['Content']):
     settings.admins.append(CurUserName)  
     itchat.send_msg(u'您已是管理猿',CurUserName)
-  if(preventAbuseTalking(CurUserName)):
-    return
   sendGroupInviteMsg(msg,CurUserName)
 
 #send group invite msg according to digits
@@ -39,6 +37,8 @@ def sendGroupInviteMsg(msg,CurUserName):
   if(len(x) >0):
     y= int(x[0])
     if(y>=0 and y<=11):
+      if(preventAbuseTalking(CurUserName)):
+        return
       #print settings.chatGroups[y]
       pullMembersMore(msg, settings.chatGroups[y], CurUserName)
       sleep(0.5)
