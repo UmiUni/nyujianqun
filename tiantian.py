@@ -39,10 +39,8 @@ def sendGroupInviteMsg(msg,CurUserName):
     if(y>=0 and y<=11):
       if(preventAbuseTalking(CurUserName)):
         return
-      #print settings.chatGroups[y]
       pullMembersMore(msg, settings.chatGroups[y], CurUserName)
       sleep(0.5)
-      settings.usersDict[CurUserName] = settings.usersDict[CurUserName] + 1
     elif(y==99):
       advertiseQR(CurUserName)
   itchat.send_msg(settings.vT, CurUserName)
