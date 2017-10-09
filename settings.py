@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import datetime
 def init():
 
   global chatGroups
@@ -6,17 +7,18 @@ def init():
   global usersDict
   global admins 
   global ADMIN
+  global previousDay
 
   chatGroups =[
   u'纽约租房',
   u'纽约拼车',
   u'纽约二手',
   u'纽约美食',
-  u'天天刷题',
-  u'NYU纽约校友',
+  u'leetcode天天',
+  u'NYU纽约内推找工作',
   u'北美CPA',
   u'北美妈妈',
-  u'圣约翰租房',
+  u'8圣约翰租房',
   u'北美信用',
   u'线上KTV',
   u'北美表情分享'
@@ -29,7 +31,7 @@ def init():
   v2= u"回复 2 加纽约二手货群;\n"
   v3= u"回复 3 加纽约美食约饭群;\n"
   v4= u"回复 4 加北美CS刷题竞赛面试总群;\n"
-  v5= u"回复 5 加NYU纽约校友群;\n"
+  v5= u"回复 5 加NYU纽约内推找工作群;\n"
   v6= u"回复 6 加北美CPA,REG天天刷题群;\n"
   v7= u"回复 7 加北美妈妈母婴总群;\n"
   v8= u"回复 8 加圣约翰租房叫车玩乐全攻略群;\n"
@@ -42,3 +44,4 @@ def init():
   usersDict = {}
   admins = []
   ADMIN = u'NY纽约加群小助手'
+  previousDay = datetime.datetime.now().day
