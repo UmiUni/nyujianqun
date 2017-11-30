@@ -12,7 +12,7 @@ def init():
   chatGroups =[
   u'纽约租房',
   u'纽约拼车',
-  u'纽约二手',
+  u'纽约二手货交易总群2',
   u'纽约美食',
   u'leetcode天天',
   u'NYU纽约内推找工作',
@@ -22,7 +22,8 @@ def init():
   u'北美信用',
   u'线上KTV',
   u'北美表情分享',
-  u'Chuck郭律师'
+  u'Chuck郭律师',
+  u'2018 H1B 中中中'
   ]
 
   v000= u"您好,NYU纽约加群建群小助手为您服务:)\n"
@@ -40,8 +41,9 @@ def init():
   v10= u"回复 10 加线上KTV开嗓🎙️北美总群;\n"
   v11= u"回复 11 加北美表情分享总群;\n"
   v12= u"回复 12 加Chuck郭律师美帝绿卡讨论群;\n"
-  v13= u"回复 99 查看【北美加群小助手Jogchat.com】\n 公众号二维码加硅谷、西雅图、三番、UIUC、Purdue等地群\n"
-  vT =v000+v00+v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11+v12+v13
+  v13= u"回复 13 加H1B中中中讨论群;\n"
+  v14= u"回复 99 查看【北美加群小助手Jogchat.com】\n 公众号二维码加硅谷、西雅图、三番、UIUC、Purdue等地群\n"
+  vT =v000+v00+v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11+v12+v13+v14
   
   usersDict = {}
   admins = []
