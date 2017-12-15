@@ -10,7 +10,7 @@ def init():
   global previousDay
 
   chatGroups =[
-  u'纽约租房',
+  u'纽约租房总群2',
   u'纽约拼车',
   u'纽约二手货交易总群2',
   u'纽约美食',
