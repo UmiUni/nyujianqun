@@ -37,8 +37,9 @@ def sendGroupInviteMsg(msg,CurUserName):
   if(len(x) >0):
     y= int(x[0])
     if(y>=0 and y<=15):
-      if(preventAbuseTalking(CurUserName)):
-        return
+      if msg['FromUserName'] not in settings.admins:
+        if(preventAbuseTalking(CurUserName)):
+          return
       pullMembersMore(msg, settings.chatGroups[y], CurUserName)
       sleep(0.5)
     elif(y==99):
