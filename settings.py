@@ -44,8 +44,9 @@ def init():
   v12= u"回复 12 加Chuck郭律师美帝绿卡讨论群;\n"
   v13= u"回复 13 加H1B中中中讨论群;\n"
   v14= u"回复 14 加北美区块链技术交流总群;\n"
-  v15= u"回复 99 查看【北美加群小助手Jogchat.com】\n 公众号二维码加硅谷、西雅图、三番、UIUC、Purdue等地群\n"
-  vT =v000+v00+v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11+v12+v13+v14+v15
+  v15= u"回复 15 加高盛内推面试刷题群;\n"
+  v16= u"回复 99 查看【北美加群小助手Jogchat.com】\n 公众号二维码加硅谷、西雅图、三番、UIUC、Purdue等地群\n"
+  vT =v000+v00+v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11+v12+v13+v14+v15+v16
   
   usersDict = {}
   admins = []
