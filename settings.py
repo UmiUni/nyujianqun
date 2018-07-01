@@ -8,7 +8,7 @@ def init():
   global admins 
   global ADMIN
   global previousDay
-
+  global v18 
   chatGroups =[
   u'纽约租房总群3',
   u'纽约拼车',
@@ -49,7 +49,7 @@ def init():
   v15= u"回复 15 加高盛内推面试刷题群;\n"
   v16= u"回复 99 查看【北美加群小助手Jogchat.com】\n 公众号二维码加硅谷、西雅图、三番、UIUC、Purdue等地群(无次数限制)\n"
   v17= u"回复 100 加北美股市Trading技术交流总群1(无次数限制)\n"
-
+  v18= u"微信自动加群群功能已关，请使用我们的网站【北美加群小助手jogchat.com】加入北美各地区Facebook群组。谢谢😊"
   vT =v000+v00+v0+v1+v2+v3+v4+v5+v6+v7+v8+v9+v10+v11+v12+v13+v14+v15+v16+v17
   
   usersDict = {}
